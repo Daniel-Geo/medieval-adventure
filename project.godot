@@ -11,8 +11,13 @@ config_version=5
 [application]
 
 config/name="Medieval Adventure"
+run/main_scene="uid://bcpta8g7esve3"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/godot_super-wakatime/plugin.cfg")
 
 [physics]
 
