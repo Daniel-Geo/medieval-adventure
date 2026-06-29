@@ -7,6 +7,7 @@ extends CharacterBody3D
 
 # Movement variables
 @export var lerp_speed := 10.0
+@export var air_lerp_speed := 3.0
 @export var crouching_depth := 0.5
 @export var jump_velocity := 4.5
 @export var free_look_tilt_amount := 5.0
@@ -33,6 +34,7 @@ var head_bobbing_index := 0.0
 
 # Input variables
 var current_speed: float
+var last_velocity := Vector3.ZERO
 var input_dir: Vector2
 var direction := Vector3.ZERO
 
@@ -50,6 +52,7 @@ var sliding := false
 @onready var camera_3d: Camera3D = $Neck/Head/Eyes/Camera3D
 @onready var collision_shape_3d: CollisionShape3D = $CollisionShape3D
 @onready var ray_cast_3d: RayCast3D = $RayCast3D
+@onready var animation_player: AnimationPlayer = $Neck/Head/Eyes/AnimationPlayer
 
 # Player nodes movement state properties
 @onready var collision_shape_3d_height: float = (collision_shape_3d.shape as CapsuleShape3D).height
@@ -85,27 +88,37 @@ func _physics_process(delta: float) -> void:
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = jump_velocity
+		animation_player.play("jump")
 		sliding = false
 
+	# Handle landing
+	if is_on_floor():
+		if last_velocity.y < -10.0:
+			animation_player.play("roll")
+		elif last_velocity.y < -4.0:
+			animation_player.play("landing")
+
 	# Handle the movement direction.
-	direction = lerp(direction, (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized(), delta * lerp_speed)
+	if is_on_floor():
+		direction = lerp(direction, (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized(), delta * lerp_speed)
+	else:
+		if input_dir != Vector2.ZERO:
+			direction = lerp(direction, (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized(), delta * air_lerp_speed)
 
 	# Handle the movement direction while sliding
 	if sliding:
 		direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+		current_speed = (slide_timer + 0.1) * slide_speed
 
 	# Handle the movement
 	if direction:
 		velocity.x = direction.x * current_speed
 		velocity.z = direction.z * current_speed
-
-		# Handle the movement while sliding
-		if sliding:
-			velocity.x = direction.x * slide_speed * slide_timer
-			velocity.z = direction.z * slide_speed * slide_timer
 	else:
 		velocity.x = move_toward(velocity.x, 0, current_speed)
 		velocity.z = move_toward(velocity.z, 0, current_speed)
+
+	last_velocity = velocity
 
 	move_and_slide()
 
@@ -114,7 +127,7 @@ func _physics_process(delta: float) -> void:
 func handle_movement_state(delta: float) -> void:
 	# Crouching
 	if Input.is_action_pressed("crouch") or sliding:
-		current_speed = crouch_speed
+		current_speed = lerp(current_speed, crouch_speed, delta * lerp_speed)
 		head.position.y = lerp(head.position.y, -crouching_depth, delta * lerp_speed)
 		collision_shape_3d.shape.height = collision_shape_3d_height - crouching_depth
 
@@ -137,7 +150,7 @@ func handle_movement_state(delta: float) -> void:
 
 		# Sprinting
 		if Input.is_action_pressed("sprint"):
-			current_speed = sprint_speed
+			current_speed = lerp(current_speed, sprint_speed, delta * lerp_speed)
 
 			walking = false
 			sprinting = true
@@ -145,7 +158,7 @@ func handle_movement_state(delta: float) -> void:
 
 		# Walking
 		else:
-			current_speed = walking_speed
+			current_speed = lerp(current_speed, walking_speed, delta * lerp_speed)
 
 			walking = true
 			sprinting = false
@@ -157,14 +170,14 @@ func handle_movement_state(delta: float) -> void:
 
 		# Handle sliding camera tilt
 		if sliding:
-			camera_3d.rotation.z = lerp(camera_3d.rotation.z, -deg_to_rad(7.0), delta * lerp_speed)
+			eyes.rotation.z = lerp(camera_3d.rotation.z, -deg_to_rad(7.0), delta * lerp_speed)
 		else:
-			camera_3d.rotation.z = -deg_to_rad(neck.rotation.y) * free_look_tilt_amount
+			eyes.rotation.z = -deg_to_rad(neck.rotation.y) * free_look_tilt_amount
 
 	else:
 		free_looking = false
 		neck.rotation.y = lerp(neck.rotation.y, 0.0, delta * lerp_speed)
-		camera_3d.rotation.z = lerp(camera_3d.rotation.z, 0.0, delta * lerp_speed)
+		eyes.rotation.z = lerp(eyes.rotation.z, 0.0, delta * lerp_speed)
 
 	# Handle sliding
 	if sliding:
