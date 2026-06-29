@@ -14,7 +14,11 @@ shape = SubResource("CapsuleShape3D_u8vuu")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 target_position = Vector3(0, 2, 0)
 
-[node name="Head" type="Node3D" parent="." unique_id=1377671721]
+[node name="Neck" type="Node3D" parent="." unique_id=532294666]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
 
-[node name="Camera3D" type="Camera3D" parent="Head" unique_id=898600905]
+[node name="Head" type="Node3D" parent="Neck" unique_id=1377671721]
+
+[node name="Eyes" type="Node3D" parent="Neck/Head" unique_id=1278435500]
+
+[node name="Camera3D" type="Camera3D" parent="Neck/Head/Eyes" unique_id=898600905]
