@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://2xb2tqme8prf"]
+
+[ext_resource type="PackedScene" uid="uid://bfebp58c27yss" path="res://assets/models/building/floor_stone.glb" id="1_h6yd7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_f3cdc"]
+size = Vector3(4, 0.15, 4)
+
+[node name="FloorStone" type="StaticBody3D" unique_id=1832715188]
+
+[node name="floor_stone" parent="." unique_id=777232656 instance=ExtResource("1_h6yd7")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=801806455]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.024999991, 0)
+shape = SubResource("BoxShape3D_f3cdc")

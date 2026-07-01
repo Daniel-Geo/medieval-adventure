@@ -1,11 +1,13 @@
 extends CharacterBody3D
 
 # Speed variables
+@export_group("Speed settings")
 @export var walking_speed := 5.0
 @export var sprint_speed := 8.0
 @export var crouch_speed := 3.0
 
 # Movement variables
+@export_group("Movement settings")
 @export var lerp_speed := 10.0
 @export var air_lerp_speed := 3.0
 @export var crouching_depth := 0.5
@@ -14,16 +16,20 @@ extends CharacterBody3D
 @export var mouse_sensitivity := 0.4
 
 # Slide variables
+@export_group("Sliding settings")
 @export var slide_speed := 10.0
 @export var slide_timer_max := 1.0
 var slide_timer := 0.0
 var slide_vector := Vector2.ZERO
 
 # Head bobbing variables
+@export_group("Head bobbing settings")
+@export_subgroup("Head Bobbing speed settings")
 @export var head_bobbing_sprinting_speed := 22.0
 @export var head_bobbing_walking_speed := 14.0
 @export var head_bobbing_crouching_speed := 10.0
 
+@export_subgroup("Head bobbing intensity settings")
 @export var head_bobbing_sprinting_intensity := 0.2
 @export var head_bobbing_walking_intensity := 0.1
 @export var head_bobbing_crouching_intensity := 0.05
@@ -58,6 +64,7 @@ var sliding := false
 @onready var collision_shape_3d_height: float = (collision_shape_3d.shape as CapsuleShape3D).height
 @onready var collision_shape_3d_position_y: float = collision_shape_3d.position.y
 
+
 func _ready():
 	# Lock mouse position and hide the cursor
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -86,21 +93,21 @@ func _physics_process(delta: float) -> void:
 		velocity += get_gravity() * delta
 
 	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = jump_velocity
 		animation_player.play("jump")
 		sliding = false
 
-	# Handle landing
+	# Handle the movement direction.
 	if is_on_floor():
+		direction = lerp(direction, (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized(), delta * lerp_speed)
+
+		# Handle landing
 		if last_velocity.y < -10.0:
 			animation_player.play("roll")
 		elif last_velocity.y < -4.0:
 			animation_player.play("landing")
 
-	# Handle the movement direction.
-	if is_on_floor():
-		direction = lerp(direction, (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized(), delta * lerp_speed)
 	else:
 		if input_dir != Vector2.ZERO:
 			direction = lerp(direction, (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized(), delta * air_lerp_speed)
