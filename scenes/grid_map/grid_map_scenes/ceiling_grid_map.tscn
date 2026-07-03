@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://qc7m4lmns14o"]
+
+[ext_resource type="PackedScene" uid="uid://dgtiylr25l4gq" path="res://scenes/grid_map/grid_map_tiles/ceiling/ceiling_tile.tscn" id="1_40cos"]
+
+[node name="CeilingGridMap" type="Node3D" unique_id=1984698066]
+
+[node name="ceiling_tile" parent="." unique_id=1980543054 instance=ExtResource("1_40cos")]
