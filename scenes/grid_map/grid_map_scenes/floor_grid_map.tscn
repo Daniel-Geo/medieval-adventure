@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://b5txqnrny6vok"]
+
+[ext_resource type="PackedScene" uid="uid://jpnh5iuau2ia" path="res://scenes/grid_map/grid_map_tiles/floors/floor_stone.tscn" id="1_vo54x"]
+[ext_resource type="PackedScene" uid="uid://d08aosv0q1npj" path="res://scenes/grid_map/grid_map_tiles/floors/floor_wood.tscn" id="2_val76"]
+
+[node name="FloorGridMap" type="Node3D" unique_id=2128331212]
+
+[node name="floor_tile_large" parent="." unique_id=56896581 instance=ExtResource("1_vo54x")]
+
+[node name="floor_wood_large_dark" parent="." unique_id=1250792025 instance=ExtResource("2_val76")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
