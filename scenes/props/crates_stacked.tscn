@@ -3,12 +3,25 @@
 [ext_resource type="PackedScene" uid="uid://byo4pdqvtfxnt" path="res://assets/models/props/crates_stacked.glb" id="1_xpqh1"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ri21w"]
-size = Vector3(2.1000001, 2.2, 2.3)
+size = Vector3(1.4, 2.2, 1.6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xpqh1"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ji2dl"]
+size = Vector3(1, 0.90000004, 1)
 
 [node name="CratesStacked" type="StaticBody3D" unique_id=1220821202]
 
 [node name="crates_stacked" parent="." unique_id=623183678 instance=ExtResource("1_xpqh1")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=518530567]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.05000007, 1.1, -0.049999982)
+transform = Transform3D(0.25881907, 0, 0.9659258, 0, 1, 0, -0.9659258, 0, 0.25881907, -0.21117724, 1.1, -0.54488885)
 shape = SubResource("BoxShape3D_ri21w")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="." unique_id=443883734]
+transform = Transform3D(0.9945219, 0, 0.104528464, 0, 1, 0, -0.104528464, 0, 0.9945219, 0.4, 0.5, 0.5)
+shape = SubResource("BoxShape3D_xpqh1")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="." unique_id=1832915260]
+transform = Transform3D(0.9945219, 0, 0.104528464, 0, 1, 0, -0.104528464, 0, 0.9945219, -0.4, 0.45000002, 0.5)
+shape = SubResource("BoxShape3D_ji2dl")
