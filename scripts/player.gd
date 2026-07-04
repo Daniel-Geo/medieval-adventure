@@ -114,7 +114,7 @@ func _physics_process(delta: float) -> void:
 
 	# Handle the movement direction while sliding
 	if sliding:
-		direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+		direction = (transform.basis * Vector3(slide_vector.x, 0, slide_vector.y)).normalized()
 		current_speed = (slide_timer + 0.1) * slide_speed
 
 	# Handle the movement
@@ -137,6 +137,7 @@ func handle_movement_state(delta: float) -> void:
 		current_speed = lerp(current_speed, crouch_speed, delta * lerp_speed)
 		head.position.y = lerp(head.position.y, -crouching_depth, delta * lerp_speed)
 		collision_shape_3d.shape.height = collision_shape_3d_height - crouching_depth
+		collision_shape_3d.position.y = collision_shape_3d_position_y - (crouching_depth / 2.0)
 
 		# Sliding
 		if sprinting and input_dir != Vector2.ZERO:
@@ -177,7 +178,7 @@ func handle_movement_state(delta: float) -> void:
 
 		# Handle sliding camera tilt
 		if sliding:
-			eyes.rotation.z = lerp(camera_3d.rotation.z, -deg_to_rad(7.0), delta * lerp_speed)
+			eyes.rotation.z = lerp(eyes.rotation.z, -deg_to_rad(7.0), delta * lerp_speed)
 		else:
 			eyes.rotation.z = -deg_to_rad(neck.rotation.y) * free_look_tilt_amount
 

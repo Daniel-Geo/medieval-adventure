@@ -14,6 +14,8 @@
 [ext_resource type="PackedScene" uid="uid://bivigylvc1mte" path="res://scenes/grid_map/grid_map_tiles/walls/wall_half_endcap.tscn" id="11_2e12f"]
 [ext_resource type="PackedScene" uid="uid://8p7odqh1tbsw" path="res://scenes/grid_map/grid_map_tiles/walls/pillar.tscn" id="12_jmuni"]
 [ext_resource type="PackedScene" uid="uid://1x3nuotv400q" path="res://scenes/grid_map/grid_map_tiles/walls/wall_crossing.tscn" id="13_tntos"]
+[ext_resource type="PackedScene" uid="uid://b83e48fjoky2o" path="res://scenes/grid_map/grid_map_tiles/walls/stairs.tscn" id="15_ap2iw"]
+[ext_resource type="PackedScene" uid="uid://dem1uodoke86c" path="res://scenes/grid_map/grid_map_tiles/walls/stairs_walled.tscn" id="16_bs87o"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_ieg06"]
 _surfaces = [{
@@ -113,3 +115,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44, 0, 0)
 
 [node name="wall_crossing" parent="." unique_id=686800533 instance=ExtResource("13_tntos")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48, 0, 0)
+
+[node name="stairs" parent="." unique_id=171071520 instance=ExtResource("15_ap2iw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52, 0, 0)
+
+[node name="stairs_walled" parent="." unique_id=1761736960 instance=ExtResource("16_bs87o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 56, 0, 0)
