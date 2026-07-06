@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://jpnh5iuau2ia" path="res://scenes/grid_map/grid_map_tiles/floors/floor_stone.tscn" id="1_vo54x"]
 [ext_resource type="PackedScene" uid="uid://d08aosv0q1npj" path="res://scenes/grid_map/grid_map_tiles/floors/floor_wood.tscn" id="2_val76"]
 [ext_resource type="PackedScene" uid="uid://b605sicss0ps1" path="res://scenes/grid_map/grid_map_tiles/floors/floor_tile_big_spikes.tscn" id="3_val76"]
+[ext_resource type="PackedScene" uid="uid://cgqsc7r62oe1x" path="res://scenes/grid_map/grid_map_tiles/floors/floor_tile_grate_open.tscn" id="4_06l2m"]
 
 [node name="FloorGridMap" type="Node3D" unique_id=2128331212]
 
@@ -13,3 +14,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
 
 [node name="floor_tile_big_spikes" parent="." unique_id=2127091952 instance=ExtResource("3_val76")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 0)
+
+[node name="floor_tile_grate_open" parent="." unique_id=1999161278 instance=ExtResource("4_06l2m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 0)

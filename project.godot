@@ -15,6 +15,14 @@ run/main_scene="uid://bcpta8g7esve3"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout="uid://cflnalqvavkln"
+
+[autoload]
+
+MusicManager="*uid://dxgo51l37rioj"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/godot_super-wakatime/plugin.cfg")
@@ -78,3 +86,5 @@ jolt_physics_3d/name=""
 [rendering]
 
 rendering_device/driver.windows="d3d12"
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"

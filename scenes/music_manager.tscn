@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://dxgo51l37rioj"]
+
+[ext_resource type="Script" uid="uid://dep7jnmoyexm7" path="res://scripts/music_manager.gd" id="1_hetdf"]
+[ext_resource type="AudioStream" uid="uid://qmy7fofng4p3" path="res://assets/music/Of Far Different Nature - Throne Room [v2] (CC-BY).ogg" id="1_tn5dr"]
+
+[node name="MusicManager" type="Node" unique_id=496775822]
+script = ExtResource("1_hetdf")
+
+[node name="GameMusic" type="AudioStreamPlayer" parent="." unique_id=1525042315]
+stream = ExtResource("1_tn5dr")
+bus = &"Music"
