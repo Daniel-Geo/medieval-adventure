@@ -4,10 +4,13 @@
 [ext_resource type="Texture2D" uid="uid://c81rsasckwkap" path="res://assets/autumn_field_puresky_4k.hdr" id="1_pm3ni"]
 [ext_resource type="PackedScene" uid="uid://cgny3ubnf3cxr" path="res://scenes/props/chest.tscn" id="2_sugp2"]
 [ext_resource type="PackedScene" uid="uid://cpos4f7r3wr5l" path="res://scenes/props/barrel.tscn" id="3_jyhfs"]
+[ext_resource type="PackedScene" uid="uid://2xb2tqme8prf" path="res://scenes/building/floor_stone.tscn" id="12_muem4"]
+[ext_resource type="Script" uid="uid://cts46sei2qrow" path="res://scenes/floor_trap.gd" id="13_dp3eg"]
+[ext_resource type="Script" uid="uid://d016cgxy5hykq" path="res://scripts/spike_area_spawner.gd" id="13_jbj1t"]
 [ext_resource type="PackedScene" uid="uid://kjmgn138hbc5" path="res://scenes/props/crates_stacked.tscn" id="14_dp3eg"]
 [ext_resource type="PackedScene" uid="uid://k7xrtaai4dos" path="res://assets/models/props/banner_mounted.glb" id="15_0ld40"]
 [ext_resource type="MeshLibrary" uid="uid://b3g372k1u75f8" path="res://scenes/grid_map/mesh_libraries/ceiling_meshlib.meshlib" id="15_jbj1t"]
-[ext_resource type="Script" uid="uid://ch2s87ww3bxi2" path="res://scripts/death_zone.gd" id="15_jkv2x"]
+[ext_resource type="Script" uid="uid://ch2s87ww3bxi2" path="res://scripts/kill_zone.gd" id="15_jkv2x"]
 [ext_resource type="PackedScene" uid="uid://c778xl055bbd8" path="res://assets/models/props/sword_shield.glb" id="16_gqmmt"]
 [ext_resource type="PackedScene" uid="uid://ed6kqsvd4lxb" path="res://scenes/props/table_medium.tscn" id="18_dp3eg"]
 [ext_resource type="PackedScene" uid="uid://55co5xijwvwi" path="res://scenes/props/chair.tscn" id="18_jscy8"]
@@ -29,10 +32,10 @@ sky = SubResource("Sky_ig7tw")
 tonemap_mode = 2
 glow_enabled = true
 
-[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_a8y0u"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_0ld40"]
+size = Vector3(2, 1, 7.2)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_jkv2x"]
-size = Vector3(3.2, 0.7, 7)
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_a8y0u"]
 
 [node name="Main" type="Node3D" unique_id=986578053]
 
@@ -83,13 +86,97 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1449997, 0, -4.294)
 [node name="keyring" parent="Building/Decorations" unique_id=1872695605 instance=ExtResource("22_jscy8")]
 transform = Transform3D(0.8528685, 0.17364818, -0.49240386, -0.15038373, 0.9848077, 0.08682409, 0.5, 0, 0.8660254, -3.6, 1, 8.099999)
 
+[node name="Trap Floor" type="Node3D" parent="Building" unique_id=230697743]
+
+[node name="FloorStone" parent="Building/Trap Floor" unique_id=1832715188 instance=ExtResource("12_muem4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 4, 24)
+
+[node name="FloorStone2" parent="Building/Trap Floor" unique_id=361563358 instance=ExtResource("12_muem4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 4, 28)
+
+[node name="FloorStone3" parent="Building/Trap Floor" unique_id=867550922 instance=ExtResource("12_muem4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 4, 24)
+
+[node name="FloorStone4" parent="Building/Trap Floor" unique_id=978242415 instance=ExtResource("12_muem4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 4, 28)
+
+[node name="FloorStone5" parent="Building/Trap Floor" unique_id=1635724860 instance=ExtResource("12_muem4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 4, 32)
+
+[node name="FloorStone6" parent="Building/Trap Floor" unique_id=1989938898 instance=ExtResource("12_muem4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 4, 32)
+
+[node name="FloorStone7" parent="Building/Trap Floor" unique_id=82924140 instance=ExtResource("12_muem4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 4, 32)
+
+[node name="FloorStone8" parent="Building/Trap Floor" unique_id=587626949 instance=ExtResource("12_muem4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 4, 32)
+
+[node name="FloorStone9" parent="Building/Trap Floor" unique_id=1101975685 instance=ExtResource("12_muem4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 4, 32)
+
+[node name="FloorStone10" parent="Building/Trap Floor" unique_id=220682908 instance=ExtResource("12_muem4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 4, 36)
+
+[node name="FloorStone11" parent="Building/Trap Floor" unique_id=1064273901 instance=ExtResource("12_muem4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 4, 36)
+
+[node name="FloorStone12" parent="Building/Trap Floor" unique_id=1026493 instance=ExtResource("12_muem4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 4, 40)
+
+[node name="FloorStone13" parent="Building/Trap Floor" unique_id=1291642660 instance=ExtResource("12_muem4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29, 4, 40)
+
+[node name="FloorStone14" parent="Building/Trap Floor" unique_id=1082092491 instance=ExtResource("12_muem4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29, 4, 44)
+
+[node name="FloorStone15" parent="Building/Trap Floor" unique_id=1410697315 instance=ExtResource("12_muem4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 4, 44)
+
+[node name="FloorStone16" parent="Building/Trap Floor" unique_id=1265043206 instance=ExtResource("12_muem4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 4, 44)
+
+[node name="FloorStone17" parent="Building/Trap Floor" unique_id=2010343538 instance=ExtResource("12_muem4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 4, 44)
+
+[node name="FloorStone18" parent="Building/Trap Floor" unique_id=1717271472 instance=ExtResource("12_muem4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 4, 40)
+
+[node name="FloorStone19" parent="Building/Trap Floor" unique_id=259507178 instance=ExtResource("12_muem4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 4, 40)
+
+[node name="Area3D" type="Area3D" parent="Building/Trap Floor" unique_id=1499507384]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+script = ExtResource("13_dp3eg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Building/Trap Floor/Area3D" unique_id=1900625624]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.85, 0, 42.75)
+shape = SubResource("BoxShape3D_0ld40")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Building/Trap Floor/Area3D" unique_id=633335890]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.450001, 0, 42.75)
+shape = SubResource("BoxShape3D_0ld40")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Building/Trap Floor/Area3D" unique_id=709400443]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.85, 0, 35.05)
+shape = SubResource("BoxShape3D_0ld40")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="Building/Trap Floor/Area3D" unique_id=1989116406]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.600001, 0, 26.3)
+shape = SubResource("BoxShape3D_0ld40")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="Building/Trap Floor/Area3D" unique_id=836719624]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.7, 0, 26.3)
+shape = SubResource("BoxShape3D_0ld40")
+
 [node name="FloorGridMap" type="GridMap" parent="." unique_id=669888572]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -2, -2)
 mesh_library = ExtResource("24_og1vs")
 cell_size = Vector3(4, 4, 4)
 data = {
-"cells": PackedInt32Array(65529, 65535, 1, 65530, 65535, 1, 65531, 65535, 1, 65532, 65535, 1, 65533, 65535, 1, 65534, 65535, 1, 65535, 65535, 1, 0, 65535, 1, 65529, 0, 1, 65530, 0, 1, 65531, 0, 1, 65532, 0, 1, 65533, 0, 1, 65534, 0, 1, 65535, 0, 1, 0, 0, 1, 0, 1, 1, 0, 2, 1, 1, 0, 1, 65529, 1, 1, 65529, 2, 1, 65530, 2, 1, 65530, 1, 1, 65531, 1, 1, 65531, 2, 1, 65532, 2, 1, 65533, 2, 1, 65534, 2, 1, 65535, 2, 1, 65535, 1, 1, 65534, 1, 1, 65533, 1, 1, 65532, 1, 1, 2, 0, 1, 2, 1, 1, 3, 0, 1, 3, 1, 1, 1, 1, 1, -8, 0, 655362, -8, 65535, 655362, 65532, 3, 655361, 65531, 3, 655361, 65530, 3, 655361, 65529, 3, 655361, 65532, 4, 655361, 65531, 4, 655361, 65530, 4, 655361, 65529, 4, 655361, 65529, 5, 655361, 65530, 5, 655361, 65531, 5, 655361, 65532, 5, 655361, 131068, 6, 655360, 131065, 6, 655360, 131066, 6, 655360, 131067, 6, 655360, 131064, 8, 655360, 131064, 9, 655360, 131064, 10, 655360, 131065, 8, 655360, 131065, 9, 655360, 131065, 10, 655360, 131066, 8, 655360, 131066, 9, 655360, 131066, 10, 655360, 131067, 8, 655360, 131067, 9, 655360, 131067, 10, 655360, 131068, 8, 655360, 131068, 9, 655360, 131068, 10, 655360, 131069, 8, 655360, 131069, 9, 655360, 131069, 10, 655360, 131065, 7, 655360, 131066, 7, 655360, 131067, 7, 655360, 131068, 7, 655360, 131064, 11, 655360, 131065, 11, 655360, 131066, 11, 655360, 131067, 11, 655360, 131068, 11, 655360, 131069, 11, 655360)
+"cells": PackedInt32Array(65529, 65535, 1, 65530, 65535, 1, 65531, 65535, 1, 65532, 65535, 1, 65533, 65535, 1, 65534, 65535, 1, 65535, 65535, 1, 0, 65535, 1, 65529, 0, 1, 65530, 0, 1, 65531, 0, 1, 65532, 0, 1, 65533, 0, 1, 65534, 0, 1, 65535, 0, 1, 0, 0, 1, 0, 1, 1, 0, 2, 1, 1, 0, 1, 65529, 1, 1, 65529, 2, 1, 65530, 2, 1, 65530, 1, 1, 65531, 1, 1, 65531, 2, 1, 65532, 2, 1, 65533, 2, 1, 65534, 2, 1, 65535, 2, 1, 65535, 1, 1, 65534, 1, 1, 65533, 1, 1, 65532, 1, 1, 2, 0, 1, 2, 1, 1, 3, 0, 1, 3, 1, 1, 1, 1, 1, -8, 0, 655362, -8, 65535, 655362, 65532, 3, 655361, 65531, 3, 655361, 65530, 3, 655361, 65529, 3, 655361, 65532, 4, 655361, 65531, 4, 655361, 65530, 4, 655361, 65529, 4, 655361, 65529, 5, 655361, 65530, 5, 655361, 65531, 5, 655361, 65532, 5, 655361, 131066, 6, 0, 131067, 6, 0, 131064, 8, 0, 131064, 9, 0, 131065, 9, 0, 131068, 9, 0, 131069, 8, 0, 131069, 9, 0, 131066, 11, 0, 131067, 11, 0, 65528, 8, 655362, 65528, 9, 655362, 65528, 10, 655362, 65528, 11, 655362, 65529, 8, 655362, 65529, 9, 655362, 65529, 10, 655362, 65529, 11, 655362, 65530, 8, 655362, 65530, 9, 655362, 65530, 10, 655362, 65530, 11, 655362, 65531, 8, 655362, 65531, 9, 655362, 65531, 10, 655362, 65531, 11, 655362, 65532, 8, 655362, 65532, 9, 655362, 65532, 10, 655362, 65532, 11, 655362, 65533, 8, 655362, 65533, 9, 655362, 65533, 10, 655362, 65533, 11, 655362, 65529, 6, 655362, 65529, 7, 655362, 65530, 6, 655362, 65530, 7, 655362, 65531, 6, 655362, 65531, 7, 655362, 65532, 6, 655362, 65532, 7, 655362, 131067, 10, 0, 131066, 10, 0, 131067, 7, 0, 131066, 7, 0)
 }
+script = ExtResource("13_jbj1t")
 metadata/_editor_floor_ = Vector3(0, 1, 0)
 
 [node name="WallGridMap" type="GridMap" parent="." unique_id=1561172232]
@@ -97,9 +184,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -2, 0)
 mesh_library = ExtResource("25_2wyq8")
 cell_size = Vector3(4, 4, 4)
 data = {
-"cells": PackedInt32Array(65529, 0, 12, 65529, 1, 1441794, 65529, 2, 1048584, 65530, 0, 1, 65530, 2, 0, 65531, 0, 7, 65531, 2, 655363, 65532, 0, 1, 65532, 2, 655361, 65533, 0, 1441800, 65533, 1, 1441795, 65534, 2, 655361, 65535, 2, 655366, 0, 2, 655361, 1, 1, 1048585, 1, 2, 1441801, 2, 1, 1, 3, 1, 1, 4, 1, 1441801, 4, 65535, 9, 4, 0, 1441797, 3, 65535, 655361, 2, 65535, 655360, 1, 65535, 655369, 1, 65534, 9, 0, 65534, 1, 65535, 65534, 8, 65535, 65535, 1441794, 65535, 0, 655371, 65534, 65534, 655361, 65533, 65534, 8, 65533, 65535, 1441795, 65532, 65534, 655361, 65531, 65534, 655361, 65530, 65534, 655361, 65529, 65534, 8, 65529, 65535, 1048579, 65528, 0, 655369, 65528, 65534, 1048585, 65528, 65535, 1048580, -8, 65534, 1048585, -8, 65535, 1048577, -8, 0, 655369, -7, 0, 1441801, -7, 65534, 9, -7, 65535, 1441792, 65533, 2, 655372, 65533, 3, 1048577, 65533, 4, 1441793, 65529, 5, 655369, 65533, 5, 1441801, 65529, 3, 1441793, 65529, 4, 1441793, 65532, 5, 655361, 65531, 5, 655374, 65530, 5, 655361, 131068, 5, 655368, 131069, 5, 9, 131065, 5, 1048585, 131066, 5, 655368, 131065, 6, 1441793, 131069, 6, 1441793, 131068, 4, 9, 131066, 4, 1048585, 131069, 7, 655369, 131065, 7, 1441801, 131064, 7, 1048585, 131070, 7, 9, 131070, 8, 1441793, 131070, 9, 1441793, 131070, 10, 1441793, 131064, 8, 1441793, 131064, 9, 1441793, 131064, 10, 1441793, 131064, 11, 655369, 131065, 11, 655361, 131066, 11, 655361, 131067, 11, 655361, 131068, 11, 655361, 131069, 11, 655361, 131070, 11, 1441801, 131067, 4, 655361)
+"cells": PackedInt32Array(65529, 0, 12, 65529, 1, 1441794, 65529, 2, 1048584, 65530, 0, 1, 65530, 2, 0, 65531, 0, 7, 65531, 2, 655363, 65532, 0, 1, 65532, 2, 655361, 65533, 0, 1441800, 65533, 1, 1441795, 65534, 2, 655361, 65535, 2, 655366, 0, 2, 655361, 1, 1, 1048585, 1, 2, 1441801, 2, 1, 1, 3, 1, 1, 4, 1, 1441801, 4, 65535, 9, 4, 0, 1441797, 3, 65535, 655361, 2, 65535, 655360, 1, 65535, 655369, 1, 65534, 9, 0, 65534, 1, 65535, 65534, 8, 65535, 65535, 1441794, 65535, 0, 655371, 65534, 65534, 655361, 65533, 65534, 8, 65533, 65535, 1441795, 65532, 65534, 655361, 65531, 65534, 655361, 65530, 65534, 655361, 65529, 65534, 8, 65529, 65535, 1048579, 65528, 0, 655369, 65528, 65534, 1048585, 65528, 65535, 1048580, -8, 65534, 1048585, -8, 65535, 1048577, -8, 0, 655369, -7, 0, 1441801, -7, 65534, 9, -7, 65535, 1441792, 65533, 2, 655372, 65533, 3, 1048577, 65529, 3, 1441793, 65529, 4, 1441793, 65532, 5, 655361, 65531, 5, 655374, 131068, 5, 655368, 131069, 5, 9, 131065, 5, 1048585, 131066, 5, 655368, 131065, 6, 1441793, 131069, 6, 1441793, 131069, 7, 655369, 131065, 7, 1441801, 131064, 7, 1048585, 131070, 7, 9, 131070, 8, 1441793, 131070, 9, 1441793, 131070, 10, 1441793, 131064, 8, 1441793, 131064, 9, 1441793, 131064, 10, 1441793, 131064, 11, 655369, 131066, 11, 655361, 131068, 11, 655361, 131069, 11, 655361, 131070, 11, 1441801, 131066, 4, 1048585, 131067, 4, 655361, 131068, 4, 9, 65530, 5, 655361, 65529, 5, 1048584, 65533, 4, 1441793, 65533, 5, 1441800, 65533, 6, 1441793, 65528, 8, 1441793, 65528, 9, 1441793, 65528, 10, 1441793, 65534, 8, 1441793, 65534, 9, 1441793, 65534, 10, 1441793, 65530, 11, 655361, 65531, 11, 655361, 65532, 11, 655361, 65533, 11, 655361, 65534, 11, 1441801, 65528, 11, 655369, 65528, 7, 1048585, 65529, 6, 1048577, 65529, 7, 1441801, 65534, 7, 9, 65533, 7, 655369, 65529, 11, 655361, 131065, 11, 655361, 131067, 12, 655374)
 }
-metadata/_editor_floor_ = Vector3(0, 0, 0)
+metadata/_editor_floor_ = Vector3(0, 1, 0)
 
 [node name="CeilingGridMap" type="GridMap" parent="." unique_id=1591461275]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 2, -2)
@@ -117,8 +204,5 @@ script = ExtResource("15_jkv2x")
 [node name="WorldBoundaryKillzone" type="CollisionShape3D" parent="Killzone" unique_id=175081035]
 shape = SubResource("WorldBoundaryShape3D_a8y0u")
 
-[node name="SpikeKillzone" type="CollisionShape3D" parent="Killzone" unique_id=1871232991]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.000002, 16.3, -2)
-shape = SubResource("BoxShape3D_jkv2x")
-
+[connection signal="body_entered" from="Building/Trap Floor/Area3D" to="Building/Trap Floor/Area3D" method="_on_body_entered"]
 [connection signal="body_entered" from="Killzone" to="Killzone" method="_on_body_entered"]
